@@ -1,18 +1,44 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { apiHandler } from "../apiHandler/apiHandler";
+import axios from "axios";
+
+import toast from 'react-hot-toast';
+
 
 function Register() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, formState: { errors }, } = useForm();
 
     const navigate = useNavigate()
 
-    const onSubmit = (data) => {
-        console.log(data);
-        // API Call Here
+    const onSubmit = async (data) => {
+        console.log("Form Data:", data);
+
+        try {
+            const res = await axios.post("http://localhost:8000/api/v1/users/register",
+                data, {
+                withCredentials: true,
+            }
+            );
+
+            // console.log("API Response:", res.data);
+
+            if (res?.data?.success == true) {
+                navigate('/')
+            }
+
+            toast.success("User registered successfully!");
+
+            // Example: Reset form
+            // reset();
+
+            navigate("/login");
+
+        } catch (error) {
+            console.error("Registration Error:", error.message);
+
+            toast.error(error.message);
+        }
     };
 
     return (
@@ -25,13 +51,9 @@ function Register() {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     {/* Username */}
                     <div>
-                        <label className="block mb-2 font-medium text-gray-700">
-                            Username
-                        </label>
+                        <label className="block mb-2 font-medium text-gray-700">Username</label>
 
-                        <input
-                            type="text"
-                            placeholder="Enter username"
+                        <input type="text" placeholder="Enter username"
                             className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
                             {...register("username", {
                                 required: "Username is required",
@@ -108,7 +130,7 @@ function Register() {
 
                 <p className="text-center mt-5 text-gray-600">
                     Already have an account?{" "}
-                    <span className="text-blue-600 cursor-pointer hover:underline" onClick={()=>{navigate('/login')}}>
+                    <span className="text-blue-600 cursor-pointer hover:underline" onClick={() => { navigate('/login') }}>
                         Login
                     </span>
                 </p>

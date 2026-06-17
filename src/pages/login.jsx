@@ -1,18 +1,47 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hook/useAuth";
+import axios from "axios";
+import toast from 'react-hot-toast';
+
 
 function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, formState: { errors }} = useForm();
+
+  const {setUser}= useAuth();
 
   const navigate = useNavigate()
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // API Call Here
+  const onSubmit = async (data) => {
+    console.log("Form Data:", data);
+  
+    try {
+      const res = await axios.post("http://localhost:8000/api/v1/users/login", data,{ withCredentials: true});
+  
+      console.log("API Response:", res.data);
+
+      if(res?.data?.success == true){
+        navigate('/')
+      }
+  
+      setUser(res.data)
+
+      // Example: Show success message
+      toast.success("User logged In successfully!");
+  
+      // Example: Reset form
+      // reset();
+  
+      // Example: Navigate to login page
+      // navigate("/login");
+  
+    } catch (error) {
+
+      console.error("login Error:", error.message);
+
+      toast.error(error.message)
+     
+    }
   };
 
   return (
