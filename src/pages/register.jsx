@@ -12,7 +12,7 @@ function Register() {
     const navigate = useNavigate()
 
     const onSubmit = async (data) => {
-        console.log("Form Data:", data);
+        // console.log("Form Data:", data);
 
         try {
             const res = await axios.post("http://localhost:8000/api/v1/users/register",
@@ -35,23 +35,23 @@ function Register() {
             navigate("/login");
 
         } catch (error) {
-            console.error("Registration Error:", error.message);
+            // console.error("Registration Error:", error.message);
 
             toast.error(error.message);
         }
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-            <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
-                <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        <div className="min-h-screen flex items-center bg-gray-900 justify-center px-4">
+            <div className="w-full max-w-md rounded-xl bg-gray-800 shadow-lg p-8">
+                <h1 className="text-3xl font-bold text-center mb-6">
                     Register
                 </h1>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     {/* Username */}
                     <div>
-                        <label className="block mb-2 font-medium text-gray-700">Username</label>
+                        <label className="block mb-2 font-medium text-white">Username</label>
 
                         <input type="text" placeholder="Enter username"
                             className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
@@ -73,13 +73,11 @@ function Register() {
 
                     {/* Email */}
                     <div>
-                        <label className="block mb-2 font-medium text-gray-700">
+                        <label className="block mb-2 font-medium text-white">
                             Email
                         </label>
 
-                        <input
-                            type="email"
-                            placeholder="Enter email"
+                        <input type="email" placeholder="Enter email"
                             className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
                             {...register("email", {
                                 required: "Email is required",
@@ -95,13 +93,11 @@ function Register() {
 
                     {/* Password */}
                     <div>
-                        <label className="block mb-2 font-medium text-gray-700">
+                        <label className="block mb-2 font-medium text-white">
                             Password
                         </label>
 
-                        <input
-                            type="password"
-                            placeholder="Enter password"
+                        <input type="password" placeholder="Enter password"
                             className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
                             {...register("password", {
                                 required: "Password is required",
@@ -122,13 +118,13 @@ function Register() {
                     {/* Button */}
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                        className="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 transition"
                     >
                         Register
                     </button>
                 </form>
 
-                <p className="text-center mt-5 text-gray-600">
+                <p className="text-center mt-5 ">
                     Already have an account?{" "}
                     <span className="text-blue-600 cursor-pointer hover:underline" onClick={() => { navigate('/login') }}>
                         Login

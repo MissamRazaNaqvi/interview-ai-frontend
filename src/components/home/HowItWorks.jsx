@@ -1,6 +1,6 @@
 const HowItWorks = () => {
     return (
-      <section className="bg-slate-50 py-20">
+      <section className=" py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="mb-16 text-center text-4xl font-bold">
             How It Works

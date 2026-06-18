@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
         try {
             const res = await axios.get("http://localhost:8000/api/v1/users/get-user", { withCredentials: true});
 
-            console.log("API Response:", res);
+            // console.log("API Response:", res);
       
             if(res?.data?.success == true){
               navigate('/')
@@ -32,7 +32,6 @@ export const UserProvider = ({ children }) => {
         getUser()
     }, [])
     
-
     console.log(user,"user from context ")
 
     return (

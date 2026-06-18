@@ -14,7 +14,7 @@ import ProtectedRoute from "./protected/ProtectedRoute.jsx";
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-800 text-white">
       <Header />
       <Toaster position="top-center" reverseOrder={false} />
 
