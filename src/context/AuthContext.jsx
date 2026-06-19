@@ -1,42 +1,96 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-export const UserContext = createContext(); // Export this
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [analysis, setAnalysis] = useState(null);
+  console.log(analysis,'analysis')
+  const [loading, setLoading] = useState(true);
 
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate()
+  const BASE_URL = "http://localhost:8000/api/v1";
 
-    const getUser = async()=>{
-        try {
-            const res = await axios.get("http://localhost:8000/api/v1/users/get-user", { withCredentials: true});
+  const getUser = async () => {
+    try {
+      console.log("Fetching user...");
 
-            // console.log("API Response:", res);
-      
-            if(res?.data?.success == true){
-              navigate('/')
-            }
-
-            setUser(res?.data)
-            setLoading(false)
-
-        } catch (error) {
-            console.error("login Error:", error.message);
+      const res = await axios.get(
+        `${BASE_URL}/users/get-user`,
+        {
+          withCredentials: true,
         }
+      );
+
+      console.log("User Response:", res.data);
+
+      if (res?.data?.success === true) {
+        setUser(res.data);
+      }
+    } catch (error) {
+      console.error(
+        "Get User Error:",
+        error?.response?.data || error.message
+      );
     }
+  };
 
-    useEffect(() => {
-        getUser()
-    }, [])
-    
-    console.log(user,"user from context ")
+  const getReport = async () => {
+    try {
+      console.log("Fetching analysis report...");
 
-    return (
-        <UserContext.Provider value={{ user, setUser, loading, setLoading}}>
-            {children}
-        </UserContext.Provider>
-    );
+      const res = await axios.get(
+        `${BASE_URL}/interview/analyses`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log("Analysis Response:", res.data);
+
+      if (res?.data?.success === true) {
+        setAnalysis(res.data);
+      }
+    } catch (error) {
+      console.error(
+        "Get Report Error:",
+        error?.response?.data || error.message
+      );
+    }
+  };
+
+  useEffect(() => {
+    const initializeApp = async () => {
+      try {
+        await Promise.all([
+          getUser(),
+          getReport()
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeApp();
+  }, []);
+
+  console.log("Current User:", user);
+  console.log("Current Analysis:", analysis);
+
+  return (
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        analysis,
+        setAnalysis,
+        loading,
+        setLoading,
+        getUser,
+        getReport,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
 };

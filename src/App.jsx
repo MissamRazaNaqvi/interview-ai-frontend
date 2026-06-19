@@ -10,6 +10,8 @@ import About from "./pages/About.jsx";
 import { Toaster } from "react-hot-toast";
 import Profile from "./pages/Profile.jsx";
 import ProtectedRoute from "./protected/ProtectedRoute.jsx";
+import ATSResumeChecker from "./pages/ATSResumeChecker.jsx";
+import ResumeAnalysisReport from "./pages/ResumeAnalysisReport.jsx";
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path="/profile" element={<Profile />} />
+            <Route path="/upload-resume" element={<ATSResumeChecker />} />
+            <Route path="/report" element={<ResumeAnalysisReport />} />
           </Route>
         </Routes>
       </main>

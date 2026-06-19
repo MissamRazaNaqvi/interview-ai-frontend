@@ -42,9 +42,10 @@ function Header() {
                 </Link>
 
                 <div className="hidden md:flex items-center gap-8">
-                    <Link to="/" className="font-medium" >Home</Link>
                     <Link to="/templates" className="font-medium">Templates</Link>
-                    <Link to="/analysis" className="font-medium">AI Analysis</Link>
+                    <Link to="/analysis" className="font-medium">AI Services</Link>
+                    <Link to="/upload-resume" className="font-medium">Analyse Resume</Link>
+                    
                     <Link to="/about" className="font-medium">About</Link>
                 </div>
 

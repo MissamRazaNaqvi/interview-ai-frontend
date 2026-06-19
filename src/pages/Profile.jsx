@@ -1,114 +1,194 @@
 import useAuth from "../hook/useAuth";
+import {
+  Mail,
+  User,
+  Calendar,
+  Shield,
+  Edit,
+} from "lucide-react";
 
 const Profile = () => {
   const { user, loading } = useAuth();
 
+
   if (loading) {
     return (
-      <div className="h-screen flex justify-center items-center text-gray-600">
-        Loading profile...
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400">
+        Loading Profile...
       </div>
     );
   }
 
-  if (!user) {
-    return (
-      <div className="h-screen flex justify-center items-center text-red-500">
-        User not found
-      </div>
-    );
-  }
-
-  const currentUser = user?.loggenInUser || user;
+  const currentUser = user?.data?.loggedUser ;
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center p-6">
+    <div className="min-h-screen bg-slate-950 px-4 py-10">
+      <div className="max-w-6xl mx-auto">
 
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-6">
+        {/* Header Card */}
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8">
 
-        {/* Avatar Section */}
-        <div className="flex flex-col items-center mb-6">
-          <div className="relative">
-            <div className="w-28 h-28 rounded-full bg-blue-600 text-white flex items-center justify-center text-3xl font-bold">
-              {currentUser?.username?.charAt(0).toUpperCase()}
-            </div>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
 
-            <div className="absolute bottom-1 right-1 bg-black text-white p-2 rounded-full text-xs cursor-pointer">
-              📷
-            </div>
-          </div>
+            <div className="flex flex-col sm:flex-row items-center gap-6">
 
-          <h2 className="mt-3 text-xl font-semibold">
-            {currentUser?.username}
-          </h2>
+              {/* Avatar */}
+              <div className="relative">
 
-          <p className="text-gray-500">{currentUser?.email}</p>
-        </div>
+                <div className="w-28 h-28 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-4xl font-bold text-white">
+                  {currentUser?.username?.charAt(0)?.toUpperCase()}
+                </div>
 
-        {/* Form Section */}
-        <div className="border rounded-xl p-5">
+                <button className="absolute bottom-0 right-0 w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center">
+                  <Edit size={16} />
+                </button>
 
-          <h3 className="text-lg font-semibold mb-4">
-            Contact Details
-          </h3>
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
 
-            {/* First Name */}
-            <div>
-              <label className="text-sm text-gray-600">First Name</label>
-              <input
-                type="text"
-                value={currentUser?.username?.split(" ")[0] || ""}
-                className="w-full mt-1 p-2 border rounded-lg focus:outline-blue-500"
-              />
-            </div>
+                <h1 className="text-3xl font-bold text-white">
+                  {currentUser?.username}
+                </h1>
 
-            {/* Last Name */}
-            <div>
-              <label className="text-sm text-gray-600">Last Name</label>
-              <input
-                type="text"
-                value={currentUser?.username?.split(" ")[1] || ""}
-                className="w-full mt-1 p-2 border rounded-lg focus:outline-blue-500"
-              />
-            </div>
+                <p className="text-slate-400 mt-1">
+                  {currentUser?.email}
+                </p>
 
-            {/* Phone Number */}
-            <div>
-              <label className="text-sm text-gray-600">Phone Number</label>
-              <div className="flex mt-1">
-                <span className="px-3 py-2 border rounded-l-lg bg-gray-100">
-                  +91
-                </span>
-                <input
-                  type="text"
-                  placeholder="123 456 7890"
-                  className="w-full p-2 border border-l-0 rounded-r-lg focus:outline-blue-500"
-                />
+                <div className="flex flex-wrap gap-2 mt-4">
+
+                  <span className="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-sm">
+                    Active User
+                  </span>
+
+                  <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-sm">
+                    Verified
+                  </span>
+
+                </div>
+
               </div>
             </div>
 
-            {/* Timezone */}
-            <div>
-              <label className="text-sm text-gray-600">Timezone</label>
-              <select className="w-full mt-1 p-2 border rounded-lg focus:outline-blue-500">
-                <option>India (GMT +5:30)</option>
-                <option>UTC (GMT +0)</option>
-                <option>US (GMT -5)</option>
-              </select>
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4">
+
+              <div className="bg-slate-800 rounded-2xl p-4 text-center">
+                <h3 className="text-2xl font-bold text-white">
+                  12
+                </h3>
+                <p className="text-slate-400 text-sm">
+                  Reports
+                </p>
+              </div>
+
+              <div className="bg-slate-800 rounded-2xl p-4 text-center">
+                <h3 className="text-2xl font-bold text-white">
+                  8
+                </h3>
+                <p className="text-slate-400 text-sm">
+                  Analyses
+                </p>
+              </div>
+
             </div>
 
           </div>
 
-          {/* Save Button */}
-          <div className="mt-6 flex justify-end">
-            <button className="px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition">
-              Save Changes
-            </button>
+        </div>
+
+        {/* Information Section */}
+        <div className="grid lg:grid-cols-2 gap-6 mt-8">
+
+          {/* Personal Info */}
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6">
+
+            <h2 className="text-xl font-semibold text-white mb-6">
+              Personal Information
+            </h2>
+
+            <div className="space-y-5">
+
+              <div className="flex items-center gap-4">
+                <User className="text-indigo-400" size={20} />
+                <div>
+                  <p className="text-slate-400 text-sm">
+                    Username
+                  </p>
+                  <p className="text-white">
+                    {currentUser?.username}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <Mail className="text-indigo-400" size={20} />
+                <div>
+                  <p className="text-slate-400 text-sm">
+                    Email Address
+                  </p>
+                  <p className="text-white">
+                    {currentUser?.email}
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Account Info */}
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6">
+
+            <h2 className="text-xl font-semibold text-white mb-6">
+              Account Information
+            </h2>
+
+            <div className="space-y-5">
+
+              <div className="flex items-center gap-4">
+                <Shield className="text-green-400" size={20} />
+                <div>
+                  <p className="text-slate-400 text-sm">
+                    Account Status
+                  </p>
+                  <p className="text-white">
+                    Active
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <Calendar className="text-purple-400" size={20} />
+                <div>
+                  <p className="text-slate-400 text-sm">
+                    Joined
+                  </p>
+                  <p className="text-white">
+                    January 2026
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-4 mt-8">
+
+          <button className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition">
+            Edit Profile
+          </button>
+
+          <button className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium transition">
+            Change Password
+          </button>
+
+        </div>
+
       </div>
     </div>
   );

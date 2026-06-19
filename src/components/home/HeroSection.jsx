@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const HeroSection = () => {
+  const navigate = useNavigate()
     return (
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-6 text-center">
@@ -12,7 +15,7 @@ const HeroSection = () => {
             and actionable improvements in seconds.
           </p>
   
-          <button className="rounded-xl bg-gray-600 px-8 py-4 text-lg">
+          <button className="cursor-pointer rounded-xl bg-gray-600 px-8 py-4 text-lg" onClick={()=>{navigate('/upload-resume')}}>
             Upload Resume
           </button>
         </div>
