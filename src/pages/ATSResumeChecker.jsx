@@ -114,9 +114,8 @@ export default function ResumeAnalyzerPage() {
 
       if(response?.data.success == true){
         setAnalysis(response?.data)
-      navigate("/report")
+        navigate("/reports")
       }
-
 
       console.log("API Success:",response.data);
 

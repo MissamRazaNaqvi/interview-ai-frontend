@@ -34,7 +34,7 @@ const ReportList = () => {
     }
 
     return (
-        <div className="min-h-screen bg-background text-text p-6">
+        <div className="min-h-screen mx-auto max-w-7xl bg-background text-text p-6">
             {/* Header */}
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-heading">
@@ -57,7 +57,7 @@ const ReportList = () => {
                             className="bg-card border border-border rounded-xl p-5 hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
                         >
                             {/* Job Title */}
-                            <h2 className="text-lg font-semibold text-heading mb-2 line-clamp-2">
+                            <h2 className="text-lg capitalize font-semibold text-heading mb-2 line-clamp-2">
                                 {report.jobDescription}
                             </h2>
 
