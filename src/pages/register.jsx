@@ -12,7 +12,6 @@ function Register() {
     const navigate = useNavigate()
 
     const onSubmit = async (data) => {
-        // console.log("Form Data:", data);
 
         try {
             const res = await axios.post(`${import.meta.env.VITE_API_URL}/users/register`,

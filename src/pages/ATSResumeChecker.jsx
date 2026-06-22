@@ -74,7 +74,6 @@ export default function ResumeAnalyzerPage() {
 
   const onSubmit = async (data) => {
     try {
-      // console.log( "Form Data Before Submit:",  data);
 
       if (!selectedFile) {
         setError("resume", {

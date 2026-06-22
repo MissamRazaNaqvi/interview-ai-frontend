@@ -13,13 +13,10 @@ function Login() {
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
   
     try {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, data,{ withCredentials: true});
   
-      // console.log("API Response:", res.data);
-
       if(res?.data?.success == true){
         navigate('/')
       }
@@ -36,8 +33,6 @@ function Login() {
       // navigate("/login");
   
     } catch (error) {
-
-      // console.error("login Error:", error.message);
 
       toast.error("invalid credential")
      
