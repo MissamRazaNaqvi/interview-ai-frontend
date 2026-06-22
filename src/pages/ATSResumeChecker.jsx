@@ -31,11 +31,11 @@ export default function ResumeAnalyzerPage() {
 
     clearErrors("resume");
 
-    console.log("Selected File:", {
-      name: file.name,
-      type: file.type,
-      size: file.size,
-    });
+    // console.log("Selected File:", {
+    //   name: file.name,
+    //   type: file.type,
+    //   size: file.size,
+    // });
 
     if (file.type !== "application/pdf") {
       setSelectedFile(null);
@@ -110,14 +110,14 @@ export default function ResumeAnalyzerPage() {
         }
       );
       
-      console.log("Interview Report Response:", response.data);
+      // console.log("Interview Report Response:", response.data);
 
       if(response?.data.success == true){
         setAnalysis(response?.data)
         navigate("/reports")
       }
 
-      console.log("API Success:",response.data);
+      // console.log("API Success:",response.data);
 
       toast.success("Resume analyzed successfully");
 

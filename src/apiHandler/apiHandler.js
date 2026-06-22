@@ -1,8 +1,8 @@
 export const apiHandler = async (apiCall) => {
-    console.log(apiCall, "apiCall")
+    // console.log(apiCall, "apiCall")
     try {
       const response = await apiCall();
-        console.log(response,"response")
+        // console.log(response,"response")
       return {
         success: true,
         data: response.data,

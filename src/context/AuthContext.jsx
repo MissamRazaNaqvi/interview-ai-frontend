@@ -6,14 +6,14 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [analysis, setAnalysis] = useState(null);
-  console.log(analysis,'analysis')
+  // console.log(analysis,'analysis')
   const [loading, setLoading] = useState(true);
 
   const BASE_URL = import.meta.env.VITE_API_URL;
 
   const getUser = async () => {
     try {
-      console.log("Fetching user...");
+      // console.log("Fetching user...");
 
       const res = await axios.get(
         `${BASE_URL}/users/get-user`,
@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
         }
       );
 
-      console.log("User Response:", res.data);
+      // console.log("User Response:", res.data);
 
       if (res?.data?.success === true) {
         setUser(res.data);
@@ -37,7 +37,7 @@ export const UserProvider = ({ children }) => {
 
   const getReport = async () => {
     try {
-      console.log("Fetching analysis report...");
+      // console.log("Fetching analysis report...");
 
       const res = await axios.get(
         `${BASE_URL}/interview/reports`,
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
         }
       );
 
-      console.log("Analysis Response:", res.data);
+      // console.log("Analysis Response:", res.data);
 
       if (res?.data?.success === true) {
         setAnalysis(res.data);
@@ -74,8 +74,8 @@ export const UserProvider = ({ children }) => {
     initializeApp();
   }, []);
 
-  console.log("Current User:", user);
-  console.log("Current Analysis:", analysis);
+  // console.log("Current User:", user);
+  // console.log("Current Analysis:", analysis);
 
   return (
     <UserContext.Provider
