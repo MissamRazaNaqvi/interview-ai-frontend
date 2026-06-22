@@ -1,24 +1,50 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+
+import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Login from "./pages/login";
-import Register from "./pages/register";
+
 import Home from "./pages/home";
 import Templates from "./pages/Templates";
 import AIAnalysis from "./pages/AIAnalysis";
-import Header from "./components/Header.jsx";
-import About from "./pages/About.jsx";
-import { Toaster } from "react-hot-toast";
-import Profile from "./pages/Profile.jsx";
-import ProtectedRoute from "./protected/ProtectedRoute.jsx";
-import ATSResumeChecker from "./pages/ATSResumeChecker.jsx";
-import ResumeAnalysisReport from "./pages/ResumeAnalysisReport.jsx";
+import About from "./pages/About";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import Profile from "./pages/Profile";
+import ATSResumeChecker from "./pages/ATSResumeChecker";
+import ResumeAnalysisReport from "./pages/ResumeAnalysisReport";
 
+import ProtectedRoute from "./protected/ProtectedRoute";
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-800 text-white">
+    <div className="min-h-screen flex flex-col bg-background text-text">
       <Header />
-      <Toaster position="top-center" reverseOrder={false} />
+
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: "#172033",
+            color: "#F8FAFC",
+            border: "1px solid #334155",
+          },
+          success: {
+            iconTheme: {
+              primary: "#10B981",
+              secondary: "#ffffff",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "#EF4444",
+              secondary: "#ffffff",
+            },
+          },
+        }}
+      />
 
       <main className="flex-1">
         <Routes>

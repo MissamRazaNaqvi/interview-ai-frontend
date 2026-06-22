@@ -45,9 +45,9 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-      <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+      <div className="w-full max-w-md bg-surface rounded-xl shadow-xl border border-border p-8">
+        <h1 className="text-3xl font-bold text-center text-text mb-6">
           Login
         </h1>
 
@@ -55,14 +55,14 @@ function Login() {
 
           {/* Email */}
           <div>
-            <label className="block mb-2 font-medium">
+            <label className="block mb-2 font-medium text-text">
               Email
             </label>
 
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-border bg-background text-text px-4 py-2 outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -88,7 +88,7 @@ function Login() {
             <input
               type="password"
               placeholder="Enter your password"
-              className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-border bg-background text-text px-4 py-2 outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -108,15 +108,15 @@ function Login() {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 transition duration-300"
+            className="w-full bg-primary hover:bg-primaryHover text-white py-2 rounded-lg transition"
           >
             Login
           </button>
         </form>
 
-        <p className="text-center mt-5">
+        <p className="text-center mt-5 text-textSecondary">
           Don't have an account?{" "}
-          <span className="text-blue-600 hover:underline cursor-pointer" onClick={()=>{navigate('/register')}}>
+          <span className="text-primary hover:underline cursor-pointer" onClick={()=>{navigate('/register')}}>
             Register
           </span>
         </p>

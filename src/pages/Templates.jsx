@@ -1,65 +1,94 @@
-const Templates = () => {
-    const templates = [
-      {
-        title: "Modern Professional",
-        description:
-          "Clean and ATS-friendly template for software engineers and developers.",
-      },
-      {
-        title: "Executive Resume",
-        description:
-          "Designed for senior professionals and management roles.",
-      },
-      {
-        title: "Creative Portfolio",
-        description:
-          "Perfect for designers, marketers, and creative professionals.",
-      },
-    ];
-  
-    return (
-      <section className="bg-slate-50 py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <span className="rounded-full bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-600">
-              Resume Templates
-            </span>
-  
-            <h1 className="mt-6 text-5xl font-bold">
-              ATS-Friendly Resume Templates
-            </h1>
-  
-            <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-600">
-              Choose from professionally designed resume templates
-              optimized for recruiters and Applicant Tracking Systems.
-            </p>
-          </div>
-  
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {templates.map((template) => (
+import { Eye, Download } from "lucide-react";
+
+const templates = [
+  {
+    title: "Modern Professional",
+    description:
+      "Perfect for Software Engineers and IT Professionals.",
+    tag: "ATS Optimized",
+    color: "from-indigo-500 to-blue-500",
+  },
+  {
+    title: "Executive Resume",
+    description:
+      "Designed for Managers and Senior Professionals.",
+    tag: "Executive",
+    color: "from-purple-500 to-pink-500",
+  },
+  {
+    title: "Creative Portfolio",
+    description:
+      "Ideal for Designers and Creative Professionals.",
+    tag: "Creative",
+    color: "from-emerald-500 to-cyan-500",
+  },
+];
+
+export default function Templates() {
+  return (
+    <section className="bg-background py-24">
+      <div className="mx-auto max-w-7xl px-6">
+
+        <div className="text-center">
+          <span className="rounded-full bg-card border border-border px-5 py-2 text-primary">
+            Resume Templates
+          </span>
+
+          <h1 className="mt-6 text-5xl font-bold text-heading">
+            ATS-Friendly Resume Templates
+          </h1>
+
+          <p className="mx-auto mt-5 max-w-3xl text-lg text-text">
+            Professionally designed templates that help your resume
+            pass Applicant Tracking Systems and impress recruiters.
+          </p>
+        </div>
+
+        <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+          {templates.map((template) => (
+            <div
+              key={template.title}
+              className="overflow-hidden rounded-3xl border border-border bg-card transition hover:-translate-y-2 hover:border-primary"
+            >
               <div
-                key={template.title}
-                className="rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="h-72 rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100"></div>
-  
-                <h3 className="mt-6 text-xl font-semibold">
+                className={`h-72 bg-gradient-to-br ${template.color}`}
+              />
+
+              <div className="p-7">
+
+                <span className="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">
+                  {template.tag}
+                </span>
+
+                <h3 className="mt-5 text-2xl font-bold text-heading">
                   {template.title}
                 </h3>
-  
-                <p className="mt-3 text-gray-600">
+
+                <p className="mt-3 text-text">
                   {template.description}
                 </p>
-  
-                <button className="mt-6 w-full rounded-lg bg-indigo-600 py-3 text-white">
-                  Preview Template
-                </button>
+
+                <div className="mt-8 flex gap-3">
+
+                  <button className="flex-1 rounded-xl bg-primary py-3 text-white hover:bg-primary-hover">
+                    <Eye className="inline mr-2 h-5 w-5" />
+                    Preview
+                  </button>
+
+                  <button className="rounded-xl border border-border px-5 hover:border-primary">
+                    <Download className="h-5 w-5" />
+                  </button>
+
+                </div>
+
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+
         </div>
-      </section>
-    );
-  };
-  
-  export default Templates;
+
+      </div>
+    </section>
+  );
+}

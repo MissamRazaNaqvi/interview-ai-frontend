@@ -42,19 +42,19 @@ function Register() {
     };
 
     return (
-        <div className="min-h-screen flex items-center bg-gray-900 justify-center px-4">
-            <div className="w-full max-w-md rounded-xl bg-gray-800 shadow-lg p-8">
-                <h1 className="text-3xl font-bold text-center mb-6">
+        <div className="min-h-screen flex items-center justify-center bg-background px-4">
+            <div className="w-full max-w-md rounded-xl bg-surface border border-border shadow-xl p-8">
+                <h1 className="ext-3xl font-bold text-center text-text mb-6">
                     Register
                 </h1>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     {/* Username */}
                     <div>
-                        <label className="block mb-2 font-medium text-white">Username</label>
+                        <label className="block mb-2 font-medium text-text">Username</label>
 
                         <input type="text" placeholder="Enter username"
-                            className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-lg border border-border bg-background text-text px-4 py-2 outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
                             {...register("username", {
                                 required: "Username is required",
                                 minLength: {
@@ -73,12 +73,12 @@ function Register() {
 
                     {/* Email */}
                     <div>
-                        <label className="block mb-2 font-medium text-white">
+                        <label className="block mb-2 font-medium text-text">
                             Email
                         </label>
 
                         <input type="email" placeholder="Enter email"
-                            className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-lg border border-border bg-background text-text px-4 py-2 outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
                             {...register("email", {
                                 required: "Email is required",
                             })}
@@ -93,12 +93,12 @@ function Register() {
 
                     {/* Password */}
                     <div>
-                        <label className="block mb-2 font-medium text-white">
+                        <label className="block mb-2 font-medium text-text">
                             Password
                         </label>
 
                         <input type="password" placeholder="Enter password"
-                            className="w-full border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-lg border border-border bg-background text-text px-4 py-2 outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: {
@@ -118,15 +118,15 @@ function Register() {
                     {/* Button */}
                     <button
                         type="submit"
-                        className="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 transition"
+                        className="w-full bg-primary hover:bg-primaryHover text-white py-2 rounded-lg transition"
                     >
                         Register
                     </button>
                 </form>
 
-                <p className="text-center mt-5 ">
+                <p className="text-center mt-5 text-textSecondary">
                     Already have an account?{" "}
-                    <span className="text-blue-600 cursor-pointer hover:underline" onClick={() => { navigate('/login') }}>
+                    <span className="text-primary cursor-pointer hover:underline" onClick={() => { navigate('/login') }}>
                         Login
                     </span>
                 </p>

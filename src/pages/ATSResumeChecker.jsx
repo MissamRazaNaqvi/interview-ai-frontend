@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import useAuth from "../hook/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 const features = ["ATS Score Evaluation", "Keyword Optimization", "Skill Gap Detection", "Resume Strength Analysis", "Industry Recommendations", "Interview Preparation",
@@ -13,6 +14,7 @@ export default function ResumeAnalyzerPage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const fileInputRef = useRef(null);
   const {setAnalysis} = useAuth()
+  const navigate = useNavigate()
   const { register, handleSubmit, setError, clearErrors, formState: { errors, isSubmitting },
     reset,
   } = useForm({
