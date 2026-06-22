@@ -454,7 +454,7 @@ const analysisData = {
   createdAt: "2026-06-19T13:19:34.388Z",
 };
 
-export default function ResumeAnalysisReport() {
+export default function ReportDetail() {
   return (
     <div className="min-h-screen bg-slate-950 text-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto">

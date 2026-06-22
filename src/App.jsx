@@ -12,9 +12,10 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Profile from "./pages/Profile";
 import ATSResumeChecker from "./pages/ATSResumeChecker";
-import ResumeAnalysisReport from "./pages/ResumeAnalysisReport";
 
 import ProtectedRoute from "./protected/ProtectedRoute";
+import ReportList from "./pages/ReportList";
+import ReportDetail from "./pages/ReportDetail";
 
 function App() {
   return (
@@ -58,7 +59,8 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/upload-resume" element={<ATSResumeChecker />} />
-            <Route path="/report" element={<ResumeAnalysisReport />} />
+            <Route path="/reports" element={<ReportList />} />
+            <Route path="/report/:id" element={<ReportDetail />} />
           </Route>
         </Routes>
       </main>

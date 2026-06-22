@@ -40,7 +40,7 @@ export const UserProvider = ({ children }) => {
       console.log("Fetching analysis report...");
 
       const res = await axios.get(
-        `${BASE_URL}/interview/analyses`,
+        `${BASE_URL}/interview/reports`,
         {
           withCredentials: true,
         }

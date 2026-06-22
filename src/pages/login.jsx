@@ -39,7 +39,7 @@ function Login() {
 
       // console.error("login Error:", error.message);
 
-      toast.error(error.message)
+      toast.error("invalid credential")
      
     }
   };
