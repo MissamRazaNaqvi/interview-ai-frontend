@@ -15,7 +15,7 @@ function Register() {
         // console.log("Form Data:", data);
 
         try {
-            const res = await axios.post("http://localhost:8000/api/v1/users/register",
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/users/register`,
                 data, {
                 withCredentials: true,
             }

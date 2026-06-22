@@ -444,7 +444,7 @@ const ReportDetail = () => {
         const fetchReport = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:8000/api/v1/interview/report/${id}`,
+                    `${import.meta.env.VITE_API_URL}/interview/report/${id}`,
                     { withCredentials: true }
                 );
                 setReport(res.data.data);

@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
   console.log(analysis,'analysis')
   const [loading, setLoading] = useState(true);
 
-  const BASE_URL = "http://localhost:8000/api/v1";
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   const getUser = async () => {
     try {

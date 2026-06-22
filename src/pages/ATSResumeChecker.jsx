@@ -100,7 +100,7 @@ export default function ResumeAnalyzerPage() {
       // }
         
       const response = await axios.post(
-        `http://localhost:8000/api/v1/interview/interview-report`,
+        `${import.meta.env.VITE_API_URL}/interview/interview-report`,
         formData,
         {
           withCredentials: true,

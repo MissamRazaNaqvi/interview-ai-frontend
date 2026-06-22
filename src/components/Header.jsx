@@ -11,7 +11,7 @@ function Header() {
     const logoutHanlder = async () => {
         try {
             const res = await axios.get(
-                "http://localhost:8000/api/v1/users/logout",
+                `${import.meta.env.VITE_API_URL}/users/logout`,
                 { withCredentials: true }
             );
 
