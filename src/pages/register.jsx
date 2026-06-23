@@ -41,7 +41,7 @@ function Register() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-background px-4">
+        <div className="min-h-[calc(100vh-198px)] flex items-center justify-center bg-background px-4">
             <div className="w-full max-w-md rounded-xl bg-surface border border-border shadow-xl p-8">
                 <h1 className="ext-3xl font-bold text-center text-text mb-6">
                     Register

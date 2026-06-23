@@ -13,7 +13,7 @@ const features = ["ATS Score Evaluation", "Keyword Optimization", "Skill Gap Det
 export default function ResumeAnalyzerPage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const fileInputRef = useRef(null);
-  const {setAnalysis} = useAuth()
+  const { setAnalysis } = useAuth()
   const navigate = useNavigate()
   const { register, handleSubmit, setError, clearErrors, formState: { errors, isSubmitting },
     reset,
@@ -97,7 +97,7 @@ export default function ResumeAnalyzerPage() {
       //     pair[1]
       //   );
       // }
-        
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/interview/interview-report`,
         formData,
@@ -108,10 +108,10 @@ export default function ResumeAnalyzerPage() {
           },
         }
       );
-      
+
       // console.log("Interview Report Response:", response.data);
 
-      if(response?.data.success == true){
+      if (response?.data.success == true) {
         setAnalysis(response?.data)
         navigate("/reports")
       }
@@ -149,80 +149,86 @@ export default function ResumeAnalyzerPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-purple-600/20 to-cyan-600/20 blur-3xl" />
 
-        <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 py-16 sm:py-20 relative z-10">
           <div className="text-center">
 
-            <span className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-indigo-300">
+            <span className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-indigo-300 text-sm">
               <Sparkles size={16} />
               AI Powered Analysis
             </span>
 
-            <h1 className="mt-8 text-5xl md:text-7xl font-bold leading-tight">
+            <h1 className="mt-6 sm:mt-8 text-3xl sm:text-5xl md:text-7xl font-bold leading-tight">
               Smart Resume
               <span className="block bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
                 ATS Analyzer
               </span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-400">
-              Upload your resume and compare it against a
-              job description using advanced AI. Improve
-              ATS compatibility, discover missing skills,
-              and maximize your chances of getting hired.
+            <p className="mx-auto mt-4 sm:mt-6 max-w-3xl text-base sm:text-lg text-slate-400 px-2">
+              Upload your resume and compare it against a job description using advanced AI.
             </p>
+
           </div>
         </div>
       </section>
 
-      {/* MAIN CONTENT */}
-      <section className="pb-20">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* MAIN */}
+      <section className="pb-16 sm:pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-          <div className="grid lg:grid-cols-2 gap-10">
-            {/* left */}
-            <div>
+          {/* FLEX LAYOUT (instead of grid) */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
 
-              <div className="rounded-3xl border border-slate-800 bg-slate-900/60 backdrop-blur p-8">
+            {/* LEFT SIDE */}
+            <div className="flex-1">
 
-                <h2 className="text-3xl font-bold">
+              <div className="rounded-3xl border border-slate-800 bg-slate-900/60 backdrop-blur p-5 sm:p-8">
+
+                <h2 className="text-2xl sm:text-3xl font-bold">
                   Upload Resume
                 </h2>
 
-                <p className="mt-2 text-slate-400">
+                <p className="mt-2 text-slate-400 text-sm sm:text-base">
                   Upload a resume or paste text manually.
                 </p>
 
-                <form
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="mt-8 space-y-6"
-                >
-                   <label
+                <form onSubmit={handleSubmit(onSubmit)} className="mt-6 sm:mt-8 space-y-6">
+
+                  {/* FILE UPLOAD */}
+                  <label
                     htmlFor="resume"
-                    className="block cursor-pointer rounded-2xl border-2 border-dashed border-slate-700 p-10 text-center hover:border-indigo-500 transition"
+                    className="block cursor-pointer rounded-2xl border-2 border-dashed border-slate-700 p-6 sm:p-10 text-center hover:border-indigo-500 transition"
                   >
-                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-800">
+                    <div className="mx-auto flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-slate-800">
                       <Upload />
                     </div>
 
-                    <h3 className="mt-5 text-lg font-semibold">
+                    <h3 className="mt-4 sm:mt-5 text-base sm:text-lg font-semibold">
                       Drag & Drop Resume
                     </h3>
 
-                    <p className="mt-2 text-sm text-slate-400">
+                    <p className="mt-2 text-xs sm:text-sm text-slate-400">
                       PDF, DOCX or TXT
                     </p>
 
-                    <div className="mt-5 inline-flex rounded-xl bg-indigo-600 px-5 py-3">
+                    <div className="mt-4 sm:mt-5 inline-flex rounded-xl bg-indigo-600 px-4 sm:px-5 py-2 sm:py-3 text-sm sm:text-base">
                       Choose File
                     </div>
 
                     {selectedFile && (
-                      <p className="mt-4 text-green-400">
+                      <p className="mt-3 text-green-400 text-sm">
                         {selectedFile.name}
                       </p>
                     )}
 
-                    <input ref={fileInputRef} hidden id="resume" type="file" accept=".pdf" onChange={handleFileChange}/>
+                    <input
+                      ref={fileInputRef}
+                      hidden
+                      id="resume"
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleFileChange}
+                    />
 
                     {errors.resume && (
                       <p className="mt-2 text-sm text-red-400">
@@ -231,62 +237,48 @@ export default function ResumeAnalyzerPage() {
                     )}
                   </label>
 
-                  {/* RESUME TEXT */}
-
+                  {/* SELF DESCRIPTION */}
                   <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block font-medium text-sm sm:text-base">
                       Self Description (Optional)
                     </label>
 
                     <textarea
                       rows={5}
-                      placeholder="Write here your Self Description..."
-                      className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
+                      className="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base"
                       {...register("selfDescription")}
                     />
                   </div>
 
-                  {/* JD */}
-
+                  {/* JOB DESCRIPTION */}
                   <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block font-medium text-sm sm:text-base">
                       Job Description
                     </label>
 
                     <textarea
                       rows={6}
-                      placeholder="Paste job description..."
-                      className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
-                      {...register(
-                        "jobDescription",
-                        {
-                          required:
-                            "Job Description is required",
-                        }
-                      )}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base"
+                      {...register("jobDescription", {
+                        required: "Job Description is required",
+                      })}
                     />
 
                     {errors.jobDescription && (
                       <p className="mt-1 text-sm text-red-400">
-                        {
-                          errors.jobDescription
-                            .message
-                        }
+                        {errors.jobDescription.message}
                       </p>
                     )}
                   </div>
 
-                  {/* BUTTONS */}
-
-                  <div className="flex gap-4">
+                  {/* BUTTONS (FLEX RESPONSIVE) */}
+                  <div className="flex flex-col sm:flex-row gap-4">
 
                     <button
                       disabled={isSubmitting}
                       className="flex-1 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 py-3 font-semibold hover:opacity-90"
                     >
-                      {isSubmitting
-                        ? "Analyzing..."
-                        : "Analyze Resume"}
+                      {isSubmitting ? "Analyzing..." : "Analyze Resume"}
                     </button>
 
                     <button
@@ -295,103 +287,70 @@ export default function ResumeAnalyzerPage() {
                         reset();
                         setSelectedFile(null);
                       }}
-                      className="rounded-xl border border-slate-700 px-6"
+                      className="rounded-xl border border-slate-700 px-6 py-3"
                     >
                       Reset
                     </button>
 
                   </div>
+
                 </form>
 
-                {/* Supported Files */}
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {["PDF", "DOCX", "TXT"].map(
-                    (type) => (
-                      <span
-                        key={type}
-                        className="rounded-full border border-slate-700 px-3 py-1 text-sm"
-                      >
-                        {type}
-                      </span>
-                    )
-                  )}
-                </div>
-
               </div>
-
             </div>
 
-            {/* right */}
-            <div>
+            {/* RIGHT SIDE */}
+            <div className="flex-1">
 
-              <div className="rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur p-8">
+              <div className="rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur p-5 sm:p-8">
 
-                <h2 className="text-3xl font-bold">
+                <h2 className="text-2xl sm:text-3xl font-bold">
                   What Our AI Evaluates
                 </h2>
 
-                <p className="mt-3 text-slate-400">
-                  Detailed ATS and recruiter-style
-                  analysis of your resume.
+                <p className="mt-3 text-slate-400 text-sm sm:text-base">
+                  Detailed ATS analysis of your resume.
                 </p>
 
-                <div className="mt-8 space-y-4">
+                {/* FEATURES */}
+                <div className="mt-6 sm:mt-8 flex flex-col gap-4">
                   {features.map((feature) => (
                     <div
                       key={feature}
                       className="flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-900 px-4 py-4"
                     >
-                      <CheckCircle2
-                        size={20}
-                        className="text-green-400"
-                      />
-
-                      <span>{feature}</span>
+                      <CheckCircle2 size={20} className="text-green-400" />
+                      <span className="text-sm sm:text-base">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Info Cards */}
-
-                <div className="mt-8 grid gap-4">
+                {/* INFO CARDS */}
+                <div className="mt-8 flex flex-col gap-4">
 
                   <div className="rounded-xl border border-slate-800 p-5">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Sparkles size={18} />
-                      <h3 className="font-semibold">
-                        What You'll Get
-                      </h3>
-                    </div>
-
+                    <h3 className="font-semibold mb-2">What You'll Get</h3>
                     <ul className="space-y-2 text-sm text-slate-400">
-                      <li>• ATS Compatibility Score</li>
+                      <li>• ATS Score</li>
                       <li>• Missing Keywords</li>
-                      <li>• Skill Gap Analysis</li>
+                      <li>• Skill Gaps</li>
                       <li>• Interview Questions</li>
-                      <li>• Career Roadmap</li>
                     </ul>
                   </div>
 
                   <div className="rounded-xl border border-slate-800 p-5">
-                    <div className="flex items-center gap-2 mb-2">
-                      <ShieldCheck size={18} />
-                      <h3 className="font-semibold">
-                        Privacy
-                      </h3>
-                    </div>
-
+                    <h3 className="font-semibold mb-2">Privacy</h3>
                     <p className="text-sm text-slate-400">
-                      Your uploaded files are processed
-                      securely and can be deleted after
-                      analysis.
+                      Your data is securely processed and can be deleted anytime.
                     </p>
                   </div>
+
                 </div>
+
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
     </div>
