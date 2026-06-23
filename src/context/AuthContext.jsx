@@ -9,34 +9,40 @@ export const UserProvider = ({ children }) => {
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const init = async () => {
-      try {
-        const userRes = await axios.get(`${import.meta.env.VITE_API_URL}/users/get-user`, {
-          withCredentials: true,
-        });
+  const init = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/get-user`,
+        { withCredentials: true }
+      );
 
-        if (!userRes.data.success) {
-          setUser(null);
-          setLoading(false);
-          return;
-        }
+      // console.log("FULL RESPONSE:", res.data);
 
-        setUser(userRes.data.data);
+      if (res.data.success) {
+        const userData = res.data;
 
-        const reportRes = await axios.get(
-          `${BASE_URL}/interview/reports`,
-          { withCredentials: true }
-        );
-
-        setAnalysis(reportRes.data.data);
-      } catch (err) {
-        setUser(null);
-      } finally {
+        setUser(userData);
         setLoading(false);
+        // console.log("API USER:", userData); //
+      } else {
+        setUser(null);
       }
-    };
+      const reportRes = await axios.get(
+        `${import.meta.env.VITE_API_URL}/interview/reports`,
+        { withCredentials: true }
+      );
 
+      setAnalysis(reportRes.data.data);
+
+    } catch (err) {
+      console.error("Init error:", err);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     init();
   }, []);
 

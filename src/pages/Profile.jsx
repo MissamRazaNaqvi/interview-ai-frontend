@@ -12,8 +12,6 @@ const Profile = () => {
     );
   }
 
-  const currentUser = user?.data?.loggedUser;
-
   return (
     <div className="min-h-screen bg-slate-950 px-4 py-6 sm:py-10">
       <div className="max-w-6xl mx-auto flex flex-col gap-6 sm:gap-8">
@@ -29,7 +27,7 @@ const Profile = () => {
               {/* Avatar */}
               <div className="relative shrink-0">
                 <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-2xl sm:text-4xl font-bold text-white">
-                  {currentUser?.username?.charAt(0)?.toUpperCase()}
+                  {user?.data?.username?.charAt(0)?.toUpperCase()}
                 </div>
 
                 <button className="absolute bottom-0 right-0 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center">
@@ -40,11 +38,11 @@ const Profile = () => {
               {/* Info */}
               <div>
                 <h1 className="text-xl sm:text-3xl font-bold text-white">
-                  {currentUser?.username}
+                  {user?.data?.username}
                 </h1>
 
                 <p className="text-slate-400 mt-1 text-sm sm:text-base">
-                  {currentUser?.email}
+                  {user?.data?.email}
                 </p>
 
                 <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-4">
@@ -93,7 +91,7 @@ const Profile = () => {
                 <div>
                   <p className="text-slate-400 text-xs sm:text-sm">Username</p>
                   <p className="text-white text-sm sm:text-base">
-                    {currentUser?.username}
+                    {user?.data?.username}
                   </p>
                 </div>
               </div>
@@ -103,7 +101,7 @@ const Profile = () => {
                 <div>
                   <p className="text-slate-400 text-xs sm:text-sm">Email Address</p>
                   <p className="text-white text-sm sm:text-base">
-                    {currentUser?.email}
+                    {user?.data?.email}
                   </p>
                 </div>
               </div>
