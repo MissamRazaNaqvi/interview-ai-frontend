@@ -1,11 +1,4 @@
-import {
-  CheckCircle2,
-  Brain,
-  FileSearch,
-  Target,
-  BadgeCheck,
-  Sparkles,
-} from "lucide-react";
+import { CheckCircle2, Brain, FileSearch, Target, BadgeCheck, Sparkles} from "lucide-react";
 
 const features = [
   "ATS Score Evaluation",
@@ -74,7 +67,7 @@ export default function AIAnalysis() {
               <Brain
                 className="text-primary"
                 size={60}
-                // fallback responsive scaling
+              // fallback responsive scaling
               />
             </div>
 

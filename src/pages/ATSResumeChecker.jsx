@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import useAuth from "../hook/useAuth";
 import { useNavigate } from "react-router-dom";
+
+import useAuth from "../hook/useAuth";
 
 
 const features = ["ATS Score Evaluation", "Keyword Optimization", "Skill Gap Detection", "Resume Strength Analysis", "Industry Recommendations", "Interview Preparation",
@@ -15,14 +16,8 @@ export default function ResumeAnalyzerPage() {
   const fileInputRef = useRef(null);
   const { setAnalysis } = useAuth()
   const navigate = useNavigate()
-  const { register, handleSubmit, setError, clearErrors, formState: { errors, isSubmitting },
-    reset,
-  } = useForm({
-    defaultValues: {
-      selfDescription: "",
-      jobDescription: "",
-    },
-  });
+  const { register, handleSubmit, setError, clearErrors, formState: { errors, isSubmitting },reset
+  } = useForm({defaultValues: { selfDescription: "", jobDescription: ""}});
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];

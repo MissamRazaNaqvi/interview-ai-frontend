@@ -1,19 +1,17 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../hook/useAuth";
 import axios from "axios";
 import toast from 'react-hot-toast';
 
+import useAuth from "../hook/useAuth";
 
 function Login() {
+
   const { register, handleSubmit, formState: { errors } } = useForm();
-
   const { setUser } = useAuth();
-
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-
     try {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, data, { withCredentials: true });
 
@@ -29,13 +27,8 @@ function Login() {
       // Example: Reset form
       // reset();
 
-      // Example: Navigate to login page
-      // navigate("/login");
-
     } catch (error) {
-
       toast.error("invalid credential")
-
     }
   };
 

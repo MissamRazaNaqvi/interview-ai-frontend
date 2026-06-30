@@ -1,24 +1,19 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { apiHandler } from "../apiHandler/apiHandler";
+import toast from 'react-hot-toast';
 import axios from "axios";
 
-import toast from 'react-hot-toast';
-
+import { apiHandler } from "../apiHandler/apiHandler";
 
 function Register() {
+
     const { register, handleSubmit, formState: { errors }, } = useForm();
-
     const navigate = useNavigate()
-
     const onSubmit = async (data) => {
 
         try {
             const res = await axios.post(`${import.meta.env.VITE_API_URL}/users/register`,
-                data, {
-                withCredentials: true,
-            }
-            );
+                data, { withCredentials: true});
 
             // console.log("API Response:", res.data);
 
@@ -27,9 +22,6 @@ function Register() {
             }
 
             toast.success("User registered successfully!");
-
-            // Example: Reset form
-            // reset();
 
             navigate("/login");
 
