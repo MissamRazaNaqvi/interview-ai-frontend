@@ -6,7 +6,6 @@ import useAuth from "../hook/useAuth";
 
 const ReportList = () => {
     const [reports, setReports] = useState([]);
-    const [loading, setLoading] = useState(true);
     const { loading } = useAuth();
 
     let [color, setColor] = useState("green");
