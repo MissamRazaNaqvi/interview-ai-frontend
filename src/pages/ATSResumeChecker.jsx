@@ -1,12 +1,12 @@
 import { Upload, Sparkles, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import React, { useRef, useState } from "react";
+
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 import useAuth from "../hook/useAuth";
-
 
 const features = ["ATS Score Evaluation", "Keyword Optimization", "Skill Gap Detection", "Resume Strength Analysis", "Industry Recommendations", "Interview Preparation",
 ];
@@ -35,10 +35,7 @@ export default function ResumeAnalyzerPage() {
     if (file.type !== "application/pdf") {
       setSelectedFile(null);
 
-      setError("resume", {
-        type: "manual",
-        message: "Only PDF files are allowed",
-      });
+      setError("resume", { type: "manual", message: "Only PDF files are allowed"});
 
       toast.error("Only PDF files are allowed");
 
@@ -50,10 +47,7 @@ export default function ResumeAnalyzerPage() {
     if (file.size > maxSize) {
       setSelectedFile(null);
 
-      setError("resume", {
-        type: "manual",
-        message: "Maximum file size is 5MB",
-      });
+      setError("resume", {type: "manual", message: "Maximum file size is 5MB"});
 
       toast.error("Maximum file size is 5MB");
 
@@ -71,10 +65,7 @@ export default function ResumeAnalyzerPage() {
     try {
 
       if (!selectedFile) {
-        setError("resume", {
-          type: "manual",
-          message: "Resume PDF is required",
-        });
+        setError("resume", { type: "manual", message: "Resume PDF is required"});
         return;
       }
 
@@ -96,11 +87,9 @@ export default function ResumeAnalyzerPage() {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/interview/interview-report`,
         formData,
-        {
+        { 
           withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          headers: {"Content-Type": "multipart/form-data"}
         }
       );
 
@@ -128,10 +117,7 @@ export default function ResumeAnalyzerPage() {
         error
       );
 
-      const message =
-        error?.response?.data?.message ||
-        error?.message ||
-        "Something went wrong";
+      const message = error?.response?.data?.message || error?.message || "Something went wrong";
 
       toast.error(message);
     }
@@ -143,7 +129,6 @@ export default function ResumeAnalyzerPage() {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-purple-600/20 to-cyan-600/20 blur-3xl" />
-
         <div className="max-w-7xl mx-auto px-6 py-16 sm:py-20 relative z-10">
           <div className="text-center">
 
@@ -170,7 +155,6 @@ export default function ResumeAnalyzerPage() {
       {/* MAIN */}
       <section className="pb-16 sm:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-
           {/* FLEX LAYOUT (instead of grid) */}
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
 
@@ -273,7 +257,7 @@ export default function ResumeAnalyzerPage() {
                       disabled={isSubmitting}
                       className="flex-1 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 py-3 font-semibold hover:opacity-90"
                     >
-                      {isSubmitting ? "Analyzing..." : "Analyze Resume"}
+                      {isSubmitting ? 'Analyzing...' : "Analyze Resume"}
                     </button>
 
                     <button
@@ -339,12 +323,9 @@ export default function ResumeAnalyzerPage() {
                       Your data is securely processed and can be deleted anytime.
                     </p>
                   </div>
-
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
       </section>
