@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Oval } from "react-loader-spinner";
+import { ClipLoader } from "react-spinners";
+import useAuth from "../hook/useAuth";
 
 const ReportList = () => {
     const [reports, setReports] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { loading } = useAuth();
 
+    let [color, setColor] = useState("green");
+
+    const override = {
+        display: "block",
+        margin: "0 auto",
+        borderColor: "white",
+    };
     useEffect(() => {
         const fetchReports = async () => {
             try {
@@ -29,19 +38,14 @@ const ReportList = () => {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen bg-background text-text">
-                <Oval
-                    height={80}
-                    width={80}
-                    color="white"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel='oval-loading'
-                    secondaryColor="gray"
-                    strokeWidth={2}
-                    strokeWidthSecondary={2}
+                <ClipLoader
+                    color={color}
+                    loading={loading}
+                    cssOverride={override}
+                    size={100}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
                 />
-
             </div>
         );
     }
